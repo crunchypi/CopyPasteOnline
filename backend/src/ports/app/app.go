@@ -15,18 +15,7 @@ type handler struct {
 	mnemonics *mnemonics.Poolhandler
 }
 
-func (h *handler) transfer(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case http.MethodGet:
-		h.transferLoad(w, r)
-
-	case http.MethodPost:
-		h.transferSave(w, r)
-
-	}
-}
-
-func (h *handler) transferSave(w http.ResponseWriter, r *http.Request) {
+func (h *handler) copyData(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -42,9 +31,8 @@ func (h *handler) transferSave(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(mnemonic))
-
 }
-func (h *handler) transferLoad(w http.ResponseWriter, r *http.Request) {
+func (h *handler) pasteData(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -64,7 +52,8 @@ func (h *handler) transferLoad(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *handler) setRoutes() {
-	http.HandleFunc("/transfer", h.transfer)
+	http.HandleFunc("/copy", h.copyData)
+	http.HandleFunc("/paste", h.pasteData)
 
 }
 func Start(db *sqlite.SQLiteManager, mnemonics *mnemonics.Poolhandler) {
