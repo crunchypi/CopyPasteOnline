@@ -20,17 +20,17 @@ This file contains a simple upspin:
 If started with default configs, requests can be made as such (pseudocode):
     
     // # Store data, this will return a mnemonic string on success.
-    POST https://localhost:8080:/transfer -data "demonstration data"
+    POST https://localhost:8080:/copy -data "demonstration data"
     
     // # Get data, this will return the stored data, given a mnemonic string.
-    GET https://localhost:8080:/transfer -mnemonic "ice tea pie"
+    POST https://localhost:8080:/paste -mnemonic "ice tea pie"
     
 
 Curl snippets:
 
     // # Store data, this will return a mnemonic string on success. (-k allows unsafe cert)
-    curl --request POST https://https://localhost:8080:/transfer -d "demonstration data" -k
+    curl --request POST https://localhost:8080:/copy -d "demonstration data" -k
     
     // # Get data, this will return the stored data, given a mnemonic string.
-    curl --request GET https://localhost:8080/transfer -d "ice tea pie" -k -tls
+    curl --request POST https://localhost:8080/paste -d "ice tea pie" -k -tls
     
