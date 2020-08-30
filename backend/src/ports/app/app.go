@@ -1,11 +1,17 @@
 package app
 
 import (
+	"copypaste-api/config"
 	"copypaste-api/ports/mnemonics"
 	"copypaste-api/ports/sqlite"
 	"io/ioutil"
 	"log"
 	"net/http"
+)
+
+var (
+	ip   = config.IP
+	port = config.Port
 )
 
 // handler serves as a bridge between the app and
@@ -60,5 +66,5 @@ func Start(db *sqlite.SQLiteManager, mnemonics *mnemonics.Poolhandler) {
 	handler := handler{db: db, mnemonics: mnemonics}
 
 	handler.setRoutes()
-	log.Println(http.ListenAndServe(":80", nil))
+	log.Println(http.ListenAndServe(ip+":"+port, nil))
 }

@@ -1,12 +1,14 @@
 package sqlite
 
 import (
+	"copypaste-api/config"
 	"database/sql"
 	"errors"
 	"time"
 )
 
-var itemTimeoutSeconds int64 = 60 * 10
+// How many seconds before entries are flushed.
+var itemTimeoutSeconds int64 = config.ItemTimeoutSeconds
 
 type Item struct {
 	ID       int

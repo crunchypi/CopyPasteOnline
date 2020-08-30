@@ -1,6 +1,7 @@
 package dosguard
 
 import (
+	"copypaste-api/config"
 	"sync"
 	"time"
 )
@@ -36,11 +37,11 @@ var (
 	Control accessControl = accessControl{at: make(map[string]accessTime)}
 	// flushDeltaSeconds dictates how many seconds should pass before an accessControl
 	// entry becomes stale and can be removed
-	flushDeltaSeconds int64 = 60
+	flushDeltaSeconds int64 = config.FlushDeltaSeconds
 	// limitDeltaSeconds dictates time in: access n/time
-	limitDeltaSeconds int64 = 60
-	// limitDeltaSeconds dictates access in: access n/time
-	accessPerLimit int = 120
+	limitDeltaSeconds int64 = config.LimitDeltaSeconds
+	// accessPerLimit dictates access in: access n/time
+	accessPerLimit int = config.AccessPerLimit
 )
 
 // RegisterCheck manages access limitation to accessControl.

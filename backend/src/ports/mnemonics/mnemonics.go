@@ -1,6 +1,7 @@
 package mnemonics
 
 import (
+	"copypaste-api/config"
 	"copypaste-api/ports/sqlite"
 	"fmt"
 	"math/rand"
@@ -8,8 +9,8 @@ import (
 )
 
 var (
-	defaultDrawN        = 3
-	defaultDrawTryLimit = 10
+	defaultDrawN        = config.DefaultDrawN
+	defaultDrawTryLimit = config.DefaultDrawTryLimit
 )
 
 // Poolhandler keeps track of a corpus pool consisting of
