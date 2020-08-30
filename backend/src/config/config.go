@@ -1,5 +1,7 @@
 package config
 
+import "time"
+
 // DB CONFIG
 var (
 	// How many seconds before entries in the sqlite db are flushed.
@@ -25,6 +27,19 @@ var (
 
 // APP CONFIG
 var (
-	IP   = "localhost"
-	Port = "80"
+	IP             = "localhost"
+	Port           = "80" // 8080 for TLS
+	ReadTimeout    = 3 * time.Second
+	WriteTimeout   = 3 * time.Second
+	StaticFilePath = ""
+)
+
+// TLS CONFIG
+var (
+	// TLS toggle - All other vars in this categories must be set
+	TLSEnabled = false
+	// Certificate path
+	CertPublicKeyPath  = ""
+	CertPrivateKeyPath = ""
+	ServerName         = "localhost"
 )
