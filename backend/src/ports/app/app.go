@@ -50,7 +50,6 @@ func (h *handler) pasteData(w http.ResponseWriter, r *http.Request) {
 
 // setRoutes sets up routes for this app.
 func (h *handler) setRoutes() {
-	http.Handle("/", midDOS(http.FileServer(http.Dir("./ports/app/servefiles"))))
 	http.Handle("/copy", midDOS(midBodyErr(http.HandlerFunc(h.copyData))))
 	http.Handle("/paste", midDOS(midBodyErr(http.HandlerFunc(h.pasteData))))
 }
