@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var itemTimeoutSeconds int64 = 60
+var itemTimeoutSeconds int64 = 60 * 10
 
 type Item struct {
 	ID       int
