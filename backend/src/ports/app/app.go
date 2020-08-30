@@ -16,16 +16,13 @@ type handler struct {
 }
 
 func (h *handler) copyData(w http.ResponseWriter, r *http.Request) {
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
+	body, _ := ioutil.ReadAll(r.Body) // # middleware err handled.
+
 	mnemonic, ok := h.mnemonics.DrawEnsured(h.db)
 	if !ok {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
-	err = h.db.CreateItem(mnemonic, body)
+	err := h.db.CreateItem(mnemonic, body)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
@@ -33,11 +30,8 @@ func (h *handler) copyData(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(mnemonic))
 }
 func (h *handler) pasteData(w http.ResponseWriter, r *http.Request) {
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
+	body, _ := ioutil.ReadAll(r.Body) // # middleware err handled.
+
 	data, ok, err := h.db.ReadItemByMnemonic(string(body))
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -52,9 +46,8 @@ func (h *handler) pasteData(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *handler) setRoutes() {
-	http.HandleFunc("/copy", h.copyData)
-	http.HandleFunc("/paste", h.pasteData)
-
+	http.Handle("/copy", midDOS(midBodyErr(http.HandlerFunc(h.copyData))))
+	http.Handle("/paste", midDOS(midBodyErr(http.HandlerFunc(h.pasteData))))
 }
 func Start(db *sqlite.SQLiteManager, mnemonics *mnemonics.Poolhandler) {
 	db.CreateItemTable()

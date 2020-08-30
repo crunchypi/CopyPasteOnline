@@ -40,7 +40,7 @@ var (
 	// limitDeltaSeconds dictates time in: access n/time
 	limitDeltaSeconds int64 = 60
 	// limitDeltaSeconds dictates access in: access n/time
-	accessPerLimit int = 60
+	accessPerLimit int = 120
 )
 
 // RegisterCheck manages access limitation to accessControl.
