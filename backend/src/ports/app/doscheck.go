@@ -36,11 +36,11 @@ var (
 	Control accessControl = accessControl{at: make(map[string]accessTime)}
 	// flushDeltaSeconds dictates how many seconds should pass before an accessControl
 	// entry becomes stale and can be removed
-	flushDeltaSeconds int64 = 5
+	flushDeltaSeconds int64 = 60
 	// limitDeltaSeconds dictates time in: access n/time
-	limitDeltaSeconds int64 = 2
+	limitDeltaSeconds int64 = 60
 	// limitDeltaSeconds dictates access in: access n/time
-	accessPerLimit int = 4
+	accessPerLimit int = 60
 )
 
 // RegisterCheck manages access limitation to accessControl.
