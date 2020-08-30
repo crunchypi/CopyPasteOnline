@@ -1,8 +1,8 @@
 package app
 
 import (
-	"CopyPasteOnline/ports/mnemonics"
-	"CopyPasteOnline/ports/sqlite"
+	"copypaste-api/ports/mnemonics"
+	"copypaste-api/ports/sqlite"
 	"os"
 	"testing"
 )

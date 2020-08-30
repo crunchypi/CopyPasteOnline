@@ -1,7 +1,7 @@
 package mnemonics
 
 import (
-	"CopyPasteOnline/ports/sqlite"
+	"copypaste-api/ports/sqlite"
 	"os"
 	"testing"
 )

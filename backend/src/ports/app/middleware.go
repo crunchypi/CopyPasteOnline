@@ -1,6 +1,7 @@
 package app
 
 import (
+	"copypaste-api/ports/app/dosguard"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -18,7 +19,7 @@ func midDOS(next http.Handler) http.Handler {
 		ip := ipport[0]
 		// # Control is a package var in doscheck which handles ip registration.
 		// # Guard too many access attempts.
-		if ok := Control.RegisterCheck(ip); !ok {
+		if ok := dosguard.Control.RegisterCheck(ip); !ok {
 			w.WriteHeader(http.StatusTooManyRequests)
 			return
 		}

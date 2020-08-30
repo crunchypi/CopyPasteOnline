@@ -1,9 +1,9 @@
 package main
 
 import (
-	"CopyPasteOnline/ports/app"
-	"CopyPasteOnline/ports/mnemonics"
-	"CopyPasteOnline/ports/sqlite"
+	"copypaste-api/ports/app"
+	"copypaste-api/ports/mnemonics"
+	"copypaste-api/ports/sqlite"
 )
 
 func main() {

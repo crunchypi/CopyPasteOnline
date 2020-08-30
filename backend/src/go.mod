@@ -1,4 +1,4 @@
-module CopyPasteOnline
+module copypaste-api
 
 go 1.14
 
