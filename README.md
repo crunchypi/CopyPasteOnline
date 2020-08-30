@@ -1,25 +1,12 @@
 # copypaste-api
 Simple API for using copy-paste on the network, using mnemonics.
 
-## Configs:
-	
-	Guarding API spam/DOS:
-	at: root/ports/app/dosguard/doscheck.go
-		flushDeltaSeconds 	# How many seconds before any IP entry is refreshed/
-		limitDeltaSeconds	# time   in: access n/time
-		accessPerLimit	  	# access in: access n/time
 
-	Guarding storage overflow (db row timeout):
-	at: root/ports/sqlite/items.go
-		itemTimeoutSeconds 	# How many seconds before entries are flushed.
-		
-	Mnemonic count:
-	at: root/ports/mnemonics/mnemonics.go
-		defaultDrawN	    	# Number of mnemonics to use. 
-		defaultDrawTryLimit	# mnemonic re-draw limitation if a draw
-				        # is already taken (is in db).
+
 
 ## API usage:
+(configs at root/config/config.go)
+<br>
 Start server in root/backend/src.main.go
 This file contains a simple upspin:
 
